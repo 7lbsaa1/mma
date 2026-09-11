@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicZone - موقع الأغاني</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== Navbar — جميع الروابط بصيغة نظيفة بدون .html ===== -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fas fa-music"></i>
+            <span>MusicZone</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/" class="active">الرئيسية</a></li>
+            <li><a href="/#songs">الأغاني</a></li>
+            <li><a href="/#artists">الفنانين</a></li>
+            <li><a href="/login">تسجيل الدخول</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>استمع لأغانيك المفضلة 🎶</h1>
+            <p>ملايين الأغاني بصوت نقي... ابحث، استمع، وحمّل</p>
+
+            <!-- 🔍 زر و خانة البحث الفعّال -->
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="اكتب اسم الأغنية أو الفنان...">
+                <button id="searchBtn"><i class="fas fa-microphone"></i></button>
+            </div>
+            <div id="searchResults" class="search-results hidden"></div>
+        </div>
+    </header>
+
+    <!-- ===== شبكة الأغاني ===== -->
+    <main class="main">
+        <section id="songs" class="section">
+            <div class="section-header">
+                <h2>🎧 كل الأغاني</h2>
+                <span id="songCount"></span>
+            </div>
+            <div class="songs-grid" id="songsGrid">
+                <!-- تُضاف ديناميكياً من script.js -->
+            </div>
+            <p id="noResults" class="no-results hidden">😕 لا توجد نتائج... جرّب اسماً آخر</p>
+        </section>
+
+        <section id="artists" class="section">
+            <div class="section-header"><h2>🎤 الفنانين</h2></div>
+            <div class="artists-grid" id="artistsGrid"></div>
+        </section>
+    </main>
+
+    <!-- ===== صفحة تفاصيل الأغنية ===== -->
+    <div id="songPage" class="song-page hidden">
+        <button class="close-page" id="closePageBtn"><i class="fas fa-arrow-right"></i> رجوع</button>
+        <div class="song-page-inner">
+            <div class="song-cover-big">
+                <img id="pageCover" src="" alt="">
+                <div class="disc-animation hidden" id="discAnim"></div>
+            </div>
+            <div class="song-info">
+                <span class="tag">قيد التشغيل</span>
+                <h1 id="pageTitle"></h1>
+                <p id="pageArtist"></p>
+                <div class="page-actions">
+                    <button class="btn-play-big" id="pagePlayBtn"><i class="fas fa-play"></i> تشغيل</button>
+                    <button class="btn-lyrics" id="lyricsBtn"><i class="fas fa-align-right"></i> إظهار الكلمات</button>
+                    <a class="btn-download" id="downloadBtn" download><i class="fas fa-download"></i> تحميل الأغنية</a>
+                </div>
+                <div class="lyrics-box hidden" id="lyricsBox"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== مشغل الموسيقى السفلي ===== -->
+    <footer class="player hidden" id="player">
+        <div class="player-track">
+            <img id="playerCover" src="" alt="">
+            <div class="player-track-info">
+                <h4 id="playerTitle">—</h4>
+                <p id="playerArtist">—</p>
+            </div>
+            <button class="like-btn" id="likeBtn"><i class="far fa-heart"></i></button>
+        </div>
+
+        <div class="player-center">
+            <div class="player-buttons">
+                <button id="shuffleBtn" title="عشوائي"><i class="fas fa-random"></i></button>
+                <button id="prevBtn" title="السابق"><i class="fas fa-step-backward"></i></button>
+                <button class="play-main" id="playBtn"><i class="fas fa-play"></i></button>
+                <button id="nextBtn" title="التالي"><i class="fas fa-step-forward"></i></button>
+                <button id="repeatBtn" title="تكرار"><i class="fas fa-redo"></i></button>
+            </div>
+            <!-- ⏱️ شريط مؤقت حقيقي -->
+            <div class="progress-row">
+                <span id="current">0:00</span>
+                <div class="progress-wrap" id="progressWrap">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-thumb" id="progressThumb"></div>
+                    </div>
+                </div>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="player-extra">
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="volumeSlider" min="0" max="100" value="80">
+        </div>
+    </footer>
+
+    <!-- الصوت الفعلي -->
+    <audio id="audio" src="Ya_Ana_Ya_La_-_Amr_Diab.m4a" preload="metadata"></audio>
+
+    <script src="/data.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
